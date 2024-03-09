@@ -6,11 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SeatService {
-    private final CinemaRoom cinemaRoom;
-
-    public SeatService(CinemaRoom cinemaRoom) {
-        this.cinemaRoom = cinemaRoom;
-    }
+    private final CinemaRoom cinemaRoom = new CinemaRoom(9, 9);
 
     public Seat getSeat(int row, int column) {
         return cinemaRoom.getSeat(row, column);

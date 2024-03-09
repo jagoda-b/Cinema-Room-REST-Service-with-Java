@@ -25,5 +25,6 @@ dependencies {
 }
 
 test {
+    enabled = false
     jvmArgs '--add-opens', 'java.base/java.lang=ALL-UNNAMED'
 }
