@@ -14,7 +14,8 @@ public class CinemaRoom {
         seats = new ArrayList<>();
         for (int i = 1; i <= rows; i++) {
             for (int j = 1; j <= columns; j++) {
-                seats.add(new Seat(i, j));
+                int price = i <= 4 ? 10 : 8;
+                seats.add(new Seat(i, j, price));
             }
         }
     }
@@ -41,5 +42,17 @@ public class CinemaRoom {
 
     public void setSeats(List<Seat> seats) {
         this.seats = seats;
+    }
+
+    public List<Seat> getAvailableSeats() {
+        return seats.stream().filter(seat -> !seat.isPurchased()).toList();
+    }
+
+    public Seat getSeat(int row, int column) {
+        return seats.stream().filter(seat -> seat.getRow() == row && seat.getColumn() == column).findFirst().orElse(null);
+    }
+
+    public void purchaseSeat(int row, int column) {
+        seats.stream().filter(seat -> seat.getRow() == row && seat.getColumn() == column).findFirst().ifPresent(seat -> seat.setPurchased(true));
     }
 }
