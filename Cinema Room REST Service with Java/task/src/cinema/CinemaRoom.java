@@ -57,4 +57,13 @@ public class CinemaRoom {
     public void purchaseSeat(int row, int column) {
         seats.stream().filter(seat -> seat.getRow() == row && seat.getColumn() == column).findFirst().ifPresent(seat -> seat.setPurchased(true));
     }
+
+    public Seat returnSeat(String token) {
+        Seat seat1 = seats.stream().filter(seat -> seat.getToken().equals(token)).findFirst().orElse(null);
+        if (seat1 != null) {
+            seat1.setPurchased(false);
+            seat1.setToken(null);
+        }
+        return seat1;
+    }
 }

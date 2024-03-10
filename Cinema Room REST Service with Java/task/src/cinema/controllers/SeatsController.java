@@ -49,4 +49,16 @@ class SeatsController {
 
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+        @PostMapping("/return")
+        public ResponseEntity<Object> returnTicket(@RequestBody Map<String, String> payload) {
+            String token = payload.get("token");
+            Seat seat = seatService.returnSeat(token);
+
+            if (seat == null) {
+                return ResponseEntity.badRequest().body(Map.of("error", "Wrong token!"));
+            }
+
+            return ResponseEntity.ok(Map.of("ticket", seat));
+        }
+
 }

@@ -2,10 +2,13 @@ package cinema;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.UUID;
+
 public class Seat {
     int row;
     int column;
     int price;
+    String token;
 
     boolean isPurchased;
 
@@ -47,5 +50,14 @@ public class Seat {
 
     public void setPurchased(boolean purchased) {
         isPurchased = purchased;
+        token = UUID.randomUUID().toString();
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

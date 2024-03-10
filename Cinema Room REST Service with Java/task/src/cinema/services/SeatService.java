@@ -12,11 +12,17 @@ public class SeatService {
         return cinemaRoom.getSeat(row, column);
     }
 
-    public void purchaseSeat(int row, int column) {
-        cinemaRoom.purchaseSeat(row, column);
+    public Seat purchaseSeat(int row, int column) {
+        Seat seat = cinemaRoom.getSeat(row, column);
+        seat.setPurchased(true);
+        return seat;
     }
 
     public CinemaRoom getCinemaRoom() {
         return cinemaRoom;
+    }
+
+    public Seat returnSeat(String token) {
+        return cinemaRoom.returnSeat(token);
     }
 }
